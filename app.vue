@@ -1,18 +1,24 @@
 <script setup>
+import { useCounterStore } from "./store/counterStore"
+
 const { locale } = useI18n()
 const colorMode = useColorMode()
 console.log(colorMode.preference)
+
+const counterStore = useCounterStore()
 </script>
 
 <template>
   <div>
-    <form>
-      <select v-model="locale">
-        <option value="en">en</option>
-        <option value="fr">fr</option>
-      </select>
-      <p>{{ $t("welcome") }}</p>
-    </form>
+    <div>
+      <form>
+        <select v-model="locale">
+          <option value="en">en</option>
+          <option value="fr">fr</option>
+        </select>
+        <p>{{ $t("welcome") }}</p>
+      </form>
+    </div>
     <div>
       <h1>Color mode: {{ $colorMode.value }}</h1>
       <select v-model="$colorMode.preference">
@@ -21,6 +27,10 @@ console.log(colorMode.preference)
         <option value="dark">Dark</option>
         <option value="sepia">Sepia</option>
       </select>
+    </div>
+    <div>
+      <h1>Counter: {{ counterStore.count }}</h1>
+      <button @click="counterStore.increment">Increment</button>
     </div>
     <NuxtWelcome />
   </div>
