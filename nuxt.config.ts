@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/color-mode",
     "@pinia/nuxt",
+    "@vueuse/nuxt",
   ],
   i18n: {
     // add `vueI18n` option to `@nuxtjs/i18n` module options

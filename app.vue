@@ -1,11 +1,17 @@
 <script setup>
 import { useCounterStore } from "./store/counterStore"
+import { useClipboard, usePermission } from "@vueuse/core"
 
 const { locale } = useI18n()
 const colorMode = useColorMode()
 console.log(colorMode.preference)
 
 const counterStore = useCounterStore()
+
+const input = ref("")
+const { text, isSupported, copy } = useClipboard()
+const permissionRead = usePermission("clipboard-read")
+const permissionWrite = usePermission("clipboard-write")
 </script>
 
 <template>
@@ -32,7 +38,18 @@ const counterStore = useCounterStore()
       <h1>Counter: {{ counterStore.count }}</h1>
       <button @click="counterStore.increment">Increment</button>
     </div>
-    <NuxtWelcome />
+    <div v-if="isSupported">
+      <note>
+        Clipboard Permission: read <b>{{ permissionRead }}</b> | write
+        <b>{{ permissionWrite }}</b>
+      </note>
+      <p>
+        Current copied: <code>{{ text || "none" }}</code>
+      </p>
+      <input v-model="input" type="text" />
+      <button @click="copy(input)">Copy</button>
+    </div>
+    <p v-else>Your browser does not support Clipboard API</p>
   </div>
 </template>
 
