@@ -6,7 +6,11 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@pinia/nuxt",
     "@vueuse/nuxt",
+    "nuxt-icons",
   ],
+  colorMode: {
+    classSuffix: "",
+  },
   i18n: {
     // add `vueI18n` option to `@nuxtjs/i18n` module options
     vueI18n: {
