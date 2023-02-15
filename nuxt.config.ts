@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
     "nuxt-icons",
+    "@sidebase/nuxt-auth",
   ],
   colorMode: {
     classSuffix: "",
