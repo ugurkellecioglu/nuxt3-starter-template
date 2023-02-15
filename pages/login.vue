@@ -1,11 +1,11 @@
 <script setup lang="ts">
-definePageMeta({ auth: false })
-const { signIn } = useSession()
+definePageMeta({ auth: false });
+const { signIn } = useSession();
 const loginForm = reactive({
   email: "",
   password: "",
-})
-const rememberMe = ref(false)
+});
+const rememberMe = ref(false);
 
 const login = async () => {
   try {
@@ -14,13 +14,13 @@ const login = async () => {
       password: loginForm.password,
       rememberMe: rememberMe.value,
     }).then((res) => {
-      console.log("res", res)
-      useRouter().push("/")
-    })
+      console.log("res", res);
+      useRouter().push("/");
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 </script>
 <template>
   <div>
@@ -75,11 +75,11 @@ const login = async () => {
                     </label>
                     <div class="mt-1 rounded-md">
                       <input
+                        v-model="loginForm.password"
                         type="password"
                         placeholder="Password"
                         name="password"
                         required="true"
-                        v-model="loginForm.password"
                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-300"
                       />
                     </div>
@@ -89,8 +89,8 @@ const login = async () => {
                     <div class="flex items-center">
                       <input
                         id="remember-me"
-                        type="checkbox"
                         v-model="rememberMe"
+                        type="checkbox"
                         class="form-checkbox h-4 w-4 tw-blue transition duration-150 ease-in-out"
                       />
                       <label
@@ -114,8 +114,8 @@ const login = async () => {
                   <div class="mt-10">
                     <span class="block w-full rounded-md">
                       <button
-                        @click="login"
                         class="w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-tailwind-blue focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out dark:bg-gray-700"
+                        @click="login"
                       >
                         Log in
                       </button>

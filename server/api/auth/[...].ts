@@ -1,6 +1,6 @@
 // this  example taken from https://github.com/sidebase/nuxt-auth-example
-import CredentialsProvider from "next-auth/providers/credentials"
-import { NuxtAuthHandler } from "#auth"
+import CredentialsProvider from "next-auth/providers/credentials";
+import { NuxtAuthHandler } from "#auth";
 
 export default NuxtAuthHandler({
   // secret needed to run nuxt-auth in production mode (used to encrypt data)
@@ -25,26 +25,26 @@ export default NuxtAuthHandler({
           email: "johndoe@example.com",
           password: "johndoe@example.com",
           image: "https://avatars.githubusercontent.com/u/25911230?v=4",
-        }
+        };
 
         if (
           credentials?.email === user.email &&
           credentials?.password === user.password
         ) {
           // Any object returned will be saved in `user` property of the JWT
-          return user
+          return user;
         } else {
           // eslint-disable-next-line no-console
           console.error(
             "Warning: Malicious login attempt registered, bad credentials provided"
-          )
+          );
 
           // If you return null then an error will be displayed advising the user to check their details.
-          return null
+          return null;
 
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
   ],
-})
+});

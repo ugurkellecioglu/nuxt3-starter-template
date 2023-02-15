@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-type HeaderLink = { text: string; href: string }
+type HeaderLink = { text: string; href: string };
 const links: HeaderLink[] = [
   { text: "Docs", href: "/docs" },
   { text: "Pricing", href: "/pricing" },
@@ -59,5 +59,5 @@ const links: HeaderLink[] = [
     text: "Blog",
     href: "https://nuxtjs.org/blog",
   },
-]
+];
 </script>
