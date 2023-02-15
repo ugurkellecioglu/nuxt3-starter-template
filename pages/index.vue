@@ -1,19 +1,4 @@
 <script setup>
-import { useCounterStore } from "@/store/counterStore"
-import { useClipboard, usePermission } from "@vueuse/core"
-const { status, data, signOut, signIn } = useSession()
-
-const { locale } = useI18n()
-const colorMode = useColorMode()
-console.log(colorMode.preference)
-
-const counterStore = useCounterStore()
-
-const input = ref("")
-const { text, isSupported, copy } = useClipboard()
-const permissionRead = usePermission("clipboard-read")
-const permissionWrite = usePermission("clipboard-write")
-
 const basedOnList = [
   {
     title: "Nuxt 3",
@@ -43,7 +28,7 @@ const basedOnList = [
     title: "Pinia",
     link: "https://pinia.esm.dev/",
   },
-]
+];
 </script>
 
 <template>
@@ -58,7 +43,7 @@ const basedOnList = [
       <ul
         class="mt-10 text-2xl font-bold text-gray-700 dark:text-gray-300 grid grid-cols-2"
       >
-        <li v-for="item in basedOnList">
+        <li v-for="item in basedOnList" :key="item.title">
           <a :href="item.link" target="_blank">{{ item.title }}</a>
         </li>
       </ul>
