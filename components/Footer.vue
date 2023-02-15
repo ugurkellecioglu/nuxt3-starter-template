@@ -10,6 +10,7 @@
         >
           <NuxtIcon :name="`social/${link}`" class="w-3 h-full mx-auto" />
         </a>
+        <ColorSwitchBox />
       </div>
     </div>
 
