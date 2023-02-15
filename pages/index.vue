@@ -1,6 +1,7 @@
 <script setup>
 import { useCounterStore } from "@/store/counterStore"
 import { useClipboard, usePermission } from "@vueuse/core"
+const { status, data, signOut, signIn } = useSession()
 
 const { locale } = useI18n()
 const colorMode = useColorMode()
@@ -12,44 +13,56 @@ const input = ref("")
 const { text, isSupported, copy } = useClipboard()
 const permissionRead = usePermission("clipboard-read")
 const permissionWrite = usePermission("clipboard-write")
+
+const basedOnList = [
+  {
+    title: "Nuxt 3",
+    link: "https://v3.nuxtjs.org/",
+  },
+  {
+    title: "Color Mode",
+    link: "https://vueuse.org/core/colorMode/",
+  },
+  {
+    title: "Vueuse",
+    link: "https://vueuse.org/",
+  },
+  {
+    title: "I18n",
+    link: "https://vueuse.org/core/i18n/",
+  },
+  {
+    title: "Nuxt Auth",
+    link: "https://auth.nuxtjs.org/",
+  },
+  {
+    title: "Tailwind CSS",
+    link: "https://tailwindcss.com/",
+  },
+  {
+    title: "Pinia",
+    link: "https://pinia.esm.dev/",
+  },
+]
 </script>
 
 <template>
-  <div>
-    <div>
-      <form>
-        <select v-model="locale">
-          <option value="en">en</option>
-          <option value="fr">fr</option>
-        </select>
-        <p>{{ $t("welcome") }}</p>
-      </form>
-    </div>
-    <div>
-      <h1>Color mode: {{ $colorMode.value }}</h1>
-      <select v-model="$colorMode.preference">
-        <option value="system">System</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="sepia">Sepia</option>
-      </select>
-    </div>
-    <div>
-      <h1>Counter: {{ counterStore.count }}</h1>
-      <button @click="counterStore.increment">Increment</button>
-    </div>
-    <div v-if="isSupported">
-      <note>
-        Clipboard Permission: read <b>{{ permissionRead }}</b> | write
-        <b>{{ permissionWrite }}</b>
-      </note>
-      <p>
-        Current copied: <code>{{ text || "none" }}</code>
+  <div
+    class="min-h-screen py-2 dark:bg-gray-900 sepia:bg-gray-200 dark:text-white"
+  >
+    <div class="justify-center py-2 mt-40 px-40 mx-auto text-center">
+      <h1 class="text-9xl font-bold dark:text-white">LB Nuxt 3 Template</h1>
+      <p class="mt-20 text-2xl font-bold text-gray-700 dark:text-gray-300">
+        This template is based on:
       </p>
-      <input v-model="input" type="text" />
-      <button @click="copy(input)">Copy</button>
+      <ul
+        class="mt-10 text-2xl font-bold text-gray-700 dark:text-gray-300 grid grid-cols-2"
+      >
+        <li v-for="item in basedOnList">
+          <a :href="item.link" target="_blank">{{ item.title }}</a>
+        </li>
+      </ul>
     </div>
-    <p v-else>Your browser does not support Clipboard API</p>
   </div>
 </template>
 
